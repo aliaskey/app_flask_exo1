@@ -1,0 +1,42 @@
+<html>
+    <head>
+        {% if title %}
+        <title>{{ title }} - Mon app</title>
+        {% else %}
+        <title>Application</title>
+        {% endif %}
+        <meta charset="UTF-8">
+        <!-- Lien vers votre fichier CSS externe -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    </head>
+    <body>
+        
+        <img src="{{ url_for('static', filename='header_image.png') }}" alt="Header Image" style="width: 100%; max-height: 150px;">
+        <P> Projet application Flask </p>
+        <nav>
+            <ul>
+                <li><a href="/index">Page d'accueil</a></li>
+                <li><a href="/register">Formulaire utilisateur</a></li>
+                <li><a href="/utilisateurs_inscrits">Liste des inscrits</a></li>
+                <li><a href="/formulaire_recherches">Actualité entreprise</a></li>
+                <li><a href="/upload_data">Téléchargement du dataset</a></li>
+                <li><a href="/stock_chart">Graphique</a></li>
+                <li><a href="/mnist_upload">Téléchargement des images</a></li>
+                <li><a href="/predict">MNIST</a></li>
+            </ul>
+        </nav>
+        
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Téléchargement de fichiers</h1>
+<form method="post" action="{{ url_for('upload_data') }}" enctype="multipart/form-data" class="centered-form">
+    <input type="file" name="datafile" >
+    <input type="submit" value="Upload" style="width: 10%; max-height: 100px; font-size: 14px;">
+</form>
+{% if tables %}
+    <h2>Statistiques du fichier</h2>
+    {{ tables|safe }}
+{% endif %}
+
+{% endblock %}
+
+
+

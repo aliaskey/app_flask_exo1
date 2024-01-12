@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+   <form method="post" action="{{ url_for('register') }}">
+ 
+        <h1>Veuillez entrer vos informations</h1>
+        <div>
+                <label for="username">Prénom:</label>
+                <input type="text" id="username" name="username">
+            </div> <br>
+            <div>
+                <label for="lastname">Nom:</label>
+                <input type="text" id="lastname" name="lastname">
+            </div> <br>
+            <div>
+                <label for="sexe">Sexe:</label>
+                <select name="sexe" id="sexe">
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                </select>
+            </div><br>
+            <div>
+                <label for="pseudo">Pseudo:</label>
+                <input type="text" id="pseudo" name="pseudo">
+            </div><br>
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email">
+            </div><br>
+            <button type="submit">OK</button>
+    </form>
+
+    {{ message }}
+    
+{% endblock %}
+
+
+
+
+
+
+        

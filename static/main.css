@@ -1,0 +1,214 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f29bfa; /* Couleur de fond légère */
+    line-height: 1.6;
+    
+}
+
+.home-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.home-container h1 {
+    color: #322525;
+    font-size: 2.5em;
+}
+
+.home-container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.call-to-action {
+    margin-top: 30px;
+}
+
+.call-to-action a {
+    background-color: #ff69b4; /* Rose vif */
+    color: rgb(101, 5, 93);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+.graphique {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type="submit"] {
+    font-size: 14px; /* Réglez la taille de police selon vos préférences */
+}
+.graphique {
+    max-width: 100%;
+    height: auto;
+}
+.container {
+    text-align: center; /* Centrer horizontalement le contenu */
+}
+
+.container h1 {
+    margin-bottom: 20px; /* Ajouter un espace en bas du titre */
+}
+
+.container img {
+    display: block; /* Assurez-vous que l'image est affichée en tant que bloc */
+    margin: 0 auto; /* Centrer horizontalement l'image */
+    max-width: 100%; /* Rendre l'image responsive */
+    height: auto;
+}
+ 
+.call-to-action a:hover {
+    background-color: #e8491d; /* Rouge vif au survol */
+}
+
+header {
+    background: #ff69b4; /* Rose vif */
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header .highlight, header .current a {
+    color: #e8491d;
+    font-weight: bold;
+}
+
+/* Sélectionnez l'élément p */
+p {
+    /* Mettez le texte en gras */
+    font-weight: bold;
+  
+    /* Augmentez la taille de la police (par exemple, 16 pixels) */
+    font-size: 30px;
+
+    text-align: center;
+  }
+  
+
+
+form {
+    margin: 5px auto;
+    background-color: #fff; /* Fond blanc */
+    padding: 5px;
+    border-radius: 10px;
+    border-radius: 10px;
+    width: 40%;
+    justify-content: center; 
+    
+}
+/* Ajoutez une classe pour centrer le formulaire */
+.centered-form {
+    margin: 5px auto;
+    background-color: #fff; /* Fond blanc */
+    padding: 5px;
+    border-radius: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.centered-form input {
+    width: 100%;
+    max-height: 100px;
+    margin: 5px 0;
+}
+
+  
+form label {
+    display: block;
+    margin-bottom: 10px;
+    color: #ff69b4; /* Rose vif */
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    background-color: #ff69b4; /* Rose vif */
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #e8491d; /* Rouge vif au survol */
+}
+footer {
+    padding: 20px;
+    color: #ff69b4; /* Rose vif */
+    background-color: #fff; /* Fond blanc */
+    text-align: center;
+}
+@media screen and (max-width: 768px) {
+    /* Styles spécifiques pour les écrans de petite taille */
+    body {
+        margin: 10px;
+    }
+
+    header ul li {
+        padding: 0 10px;
+    }
+}
+ /* Styles pour les liens */
+a {
+    text-decoration: none; /* Supprime les soulignements par défaut */
+    color: #e8491d; /* Couleur du texte pour les liens non visités */
+    transition: color 0.3s; /* Animation de transition pour la couleur du texte */
+}
+
+a:hover {
+    color: #ff0000; /* Couleur du texte lorsque vous survolez le lien */
+}
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #ddd;
+    color: black;
+}

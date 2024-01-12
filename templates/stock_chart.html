@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form id="recherche-form" method="post" action="{{ url_for('stock_chart') }}">
+    <label for="ticker">Choisir le symbole boursier :</label>
+    <select id="ticker" name="ticker">
+        <option value="AAPL">Apple Inc. - AAPL</option>
+        <option value="MSFT">Microsoft Corporation - MSFT</option>
+        <option value="AMZN">Amazon.com, Inc. - AMZN</option>
+        <!-- Ajoutez d'autres options ici -->
+    </select>
+    <button type="submit">Rechercher</button>
+</form>
+{% if graph_url %}
+    <div class="container">
+        <h1>Graphique du Stock pour {{ symbol }}</h1>
+        <img src="data:image/png;base64,{{ graph_url }}" alt="Graphique du Stock">
+    </div>
+{% endif %}
+{% endblock %}
+

@@ -1,0 +1,96 @@
+
+<h1>Téléchargement d'un fichier image</h1>
+<form method="post" action="{{ url_for('predict_upload_data') }}" enctype="multipart/form-data" class="centered-form">
+    <select id="imageSelect" onchange="handleImageChange()">
+        <option value="">Sélectionnez une image</option>
+        <option value="digits_0.png">Image 0</option>
+        <option value="digits_1.png">Image 1</option>
+        <option value="digits_2.png">Image 2</option>
+        <option value="digits_3.png">Image 3</option>
+        <option value="digits_4.png">Image 4</option>
+        <option value="digits_5.png">Image 5</option>
+        <!-- Ajoutez d'autres images ici -->
+</select>
+    <input type="file" name="datafile" id="datafile" hidden>
+    <input type="submit" value="Upload" style="width: 10%; max-height: 100px; font-size: 14px;">
+</form> 
+ 
+<!-- Afficher l'image sélectionnée ici -->
+<img id="imagePreview" src="#" alt="Image sélectionnée apparaîtra ici" style="max-width: 280px; max-height: 280px;"/>  
+<script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var drawing = false;
+        var prevX = 0, prevY = 0;
+        
+        canvas.addEventListener('mousedown', function(e) {
+            drawing = true;
+            prevX = e.clientX - canvas.offsetLeft;
+            prevY = e.clientY - canvas.offsetTop;
+        });
+        
+        canvas.addEventListener('mouseup', function(e) {
+            drawing = false;
+        });
+        
+        canvas.addEventListener('mousemove', function(e) {
+            if (drawing) {
+                var currX = e.clientX - canvas.offsetLeft;
+                var currY = e.clientY - canvas.offsetTop;
+                draw(prevX, prevY, currX, currY);
+                prevX = currX;
+                prevY = currY;
+            }
+        });
+        
+        function draw(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.strokeStyle = 'black';
+            ctx.lineWidth = 10;
+            ctx.lineJoin = 'round';
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.closePath();
+            ctx.stroke();
+        }
+        
+        function saveDrawing() {
+            var imageData = canvas.toDataURL('image/png');
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: imageData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('prediction').innerText = 'Prédiction: ' + data.prediction;
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        }
+        
+    </script>
+ 
+ 
+ <!--     
+
+<h1>Téléchargement d'un fichier image</h1>
+    <form method="post" action="{{ url_for('predict_upload_data') }}" enctype="multipart/form-data" class="centered-form">
+        <input type="file" name="datafile" >
+        <input type="submit" value="Upload" style="width: 10%; max-height: 100px; font-size: 14px;">
+    </form>-->
+
+    
+
+    
+
+    <!-- Ici, vous afficherez la prédiction -->
+    -->
+-->
+
+
+    <!-- Reste de votre code JavaScript pour le dessin sur le canvas... -->
+

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <!-- Titre de la page -->
+    Dessine et il devine en détente!
+{% endblock %}
+
+{% block content %}
+    <!-- Titre principal de la section de contenu -->
+    <h1>Dessine un nombre</h1>
+
+    <!-- Canvas pour dessiner le nombre, avec une taille réduite et une bordure noire -->
+    <canvas id="canvas" width="300" height="300" style="border:1px solid black;"></canvas>
+
+    <!-- Boutons pour deviner le nombre et effacer le dessin -->
+    <button id="guessButton" onclick="guessNumber()">DEVINE!</button>
+    <button id="clearButton" onclick="clearCanvas()">Effacez et recommencez</button>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Initialisation du canevas avec un fond noir
+        function initializeCanvas() {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        initializeCanvas();
+
+        // Gestionnaires d'événements pour le dessin sur le canevas
+        canvas.addEventListener('mousedown', e => {
+            isDrawing = true;
+            draw(e);
+        });
+        canvas.addEventListener('mousemove', e => {
+            if (isDrawing) {
+                draw(e);
+            }
+        });
+        canvas.addEventListener('mouseup', () => {
+            isDrawing = false;
+            ctx.beginPath();
+        });
+
+        // Fonction pour effacer le canevas
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            initializeCanvas();
+        }
+
+        // Fonction pour dessiner sur le canevas
+        function draw(e) {
+            if (!isDrawing) return;
+            ctx.lineWidth = 5; // Largeur du trait réduite
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = 'white'; // Couleur du trait en blanc
+
+            ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        }
+
+        // Fonction pour envoyer le dessin au serveur et recevoir la prédiction
+        function guessNumber() {
+            var imageData = canvas.toDataURL('image/png').replace("data:image/png;base64,", "");
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: imageData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Prédiction: ' + data.prediction);
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+            });
+        }
+    </script>
+{% endblock %}

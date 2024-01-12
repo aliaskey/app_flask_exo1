@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Résultats de la Recherche</h1>
+    {% if news %}
+        <h2>Nouvelles pour {{ news.company_name }} ({{ news.ticker }})</h2>
+        <ul>
+            {% for article in news.articles %}
+                <li>
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.description }}</p>
+                    <p><a href="{{ article.url }}">Lire plus</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucune information n'a été trouvée pour le symbole boursier donné.</p>
+    {% endif %}
+    
+{% endblock %}
